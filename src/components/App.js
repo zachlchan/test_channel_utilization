@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 // Add the following import to any file you use async/await in
 import 'babel-polyfill';
+import BarChart from './BarChart';
 
 const App = () => {
     const getData = async (endpoint) => {
@@ -22,7 +23,8 @@ const App = () => {
 
     return (
         <StyledWrapper>
-            <h1>Channel Utilization</h1>
+            <h1>Productivity Dashboard</h1>
+            <BarChart />
             <button type="button" onClick={getChannels}>
                 Get Channel Data
             </button>
@@ -34,8 +36,9 @@ const App = () => {
 };
 
 const StyledWrapper = styled.div`
-    & h1 {
+    h1, h2 {
         font-family: 'Source Sans Pro',Helvetica,Arial,Lucida,sans-serif;
+        border-bottom: 1px solid gray;
     }
 `;
 
