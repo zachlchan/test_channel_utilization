@@ -12,7 +12,9 @@ const BarChart = ({
     endDate
 }) => {
     const [displayWeekends, setDisplayWeekends] = useState(true);
+
     const toggleWeekends = () => setDisplayWeekends(!displayWeekends);
+
     const getBars = () => {
         if (chartRange && utilization) {
             const childProps = {
@@ -46,6 +48,8 @@ const BarChart = ({
 
 const StyledWrapper = styled.div`
     h2 {
+        padding-bottom: 10px;
+        border-bottom: 1px solid gray;
         font-size: 100%;
         text-transform: uppercase;
         margin-left: 25%;

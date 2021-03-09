@@ -9,12 +9,6 @@ const Bar = ({
     utilization,
     displayWeekends
 }) => {
-    const isWeekend = () => {
-        const day = moment(date).day();
-        if (day === 0 || day === 6) return true;
-        return false;
-    };
-
     const numChannels = utilization[date] || 0;
     const utilizationRatio = numChannels / totalChannels;
     const barHeight = numChannels ? `${utilizationRatio * 200}px` : 0;
@@ -22,6 +16,12 @@ const Bar = ({
         date: `${date}`,
         ratio: `${numChannels} of ${totalChannels} channels`,
         percentage: `${Math.round(utilizationRatio * 100)}% utilization`,
+    };
+
+    const isWeekend = () => {
+        const day = moment(date).day();
+        if (day === 0 || day === 6) return true;
+        return false;
     };
 
     if (displayWeekends) {
