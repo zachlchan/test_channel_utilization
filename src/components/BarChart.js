@@ -1,22 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import 'babel-polyfill';
+import moment from 'moment';
+import Bar from './Bar';
 
-const BarChart = () => {
-    const isWeekend = (date) => {
-        const testDate = new Date(date);
-        const day = testDate.getDay();
-        if (day === 0 || day === 6) return true;
-        return false;
+const BarChart = ({
+    totalChannels,
+    utilization,
+    chartRange,
+    startDate,
+    endDate
+}) => {
+    const [displayWeekends, setDisplayWeekends] = useState(true);
+    const toggleWeekends = () => setDisplayWeekends(!displayWeekends);
+    const getBars = () => {
+        if (chartRange && utilization) {
+            const childProps = {
+                totalChannels,
+                utilization,
+                displayWeekends,
+            };
+            return (
+                chartRange.map(date => <Bar key={date} date={date} {...childProps} />)
+            );
+        }
     };
 
     return (
         <StyledWrapper>
             <div className="toggleContainer">
-                <button className="wkndBtn" type="button" onClick={() => console.log(isWeekend('2019-11-11T17:00:00Z'))}>
+                <button className="wkndBtn" type="button" onClick={toggleWeekends}>
                     toggle weekends
                 </button>
             </div>
             <h2>channel utilization</h2>
+            <div className="barChart">{getBars()}
+                <div className="xlabels">
+                    <div className="xstart">{moment(startDate).format('MMM D')}</div>
+                    <div className="xend">{moment(endDate).format('MMM D')}</div>
+                </div>
+            </div>
         </StyledWrapper>
     );
 };
@@ -48,6 +71,17 @@ const StyledWrapper = styled.div`
         :focus {
             outline: none;
         }
+    }
+    .barChart {
+        width: fit-content;
+        margin-left: 25%;
+    }
+    .xlabels {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
     }
 `;
 
