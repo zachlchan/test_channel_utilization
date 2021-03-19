@@ -1,15 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 import Tooltip from './Tooltip';
 
-const Bar = ({
-    date,
-    totalChannels,
-    utilization,
-    displayWeekends
-}) => {
-    // const numChannels = utilization[date] || 0;
+const Bar = ({ date, utilization }) => {
+    const totalChannels = useSelector(state => state.totalChannels);
+    const displayWeekends = useSelector(state => state.displayWeekends);
+
     const numChannels = utilization || 0;
     const utilizationRatio = numChannels / totalChannels;
     const barHeight = numChannels ? `${utilizationRatio * 200}px` : 0;

@@ -8,24 +8,15 @@ import Bar from './Bar';
 
 const BarChart = () => {
     const dispatch = useDispatch();
-    const totalChannels = useSelector(state => state.totalChannels);
     const utilization = useSelector(state => state.utilization);
     const dateRange = useSelector(state => state.dateRange);
     const startDate = useSelector(state => state.startDate);
     const endDate = useSelector(state => state.endDate);
-    const displayWeekends = useSelector(state => state.displayWeekends);
 
     const getBars = () => {
-        if (dateRange && utilization) {
-            const childProps = {
-                totalChannels,
-                // utilization,
-                displayWeekends,
-            };
-            return (
-                dateRange.map(date => <Bar key={date} date={date} {...childProps} utilization={utilization[date]} />)
-            );
-        }
+        return (
+            dateRange.map(date => <Bar key={date} date={date} utilization={utilization[date]} />)
+        );
     };
 
     return (

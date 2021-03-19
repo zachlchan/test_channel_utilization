@@ -1,6 +1,6 @@
 import '../mockAPI'; // Do not remove or modify this line
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 // Add the following import to any file you use async/await in
 import 'babel-polyfill';
