@@ -2,7 +2,9 @@ import {
     SET_DATE_RANGE,
     FETCH_CHANNELS_DATA,
     FETCH_TESTS_DATA,
+    SET_TOTAL_CHANNELS,
     CALC_UTILIZATION,
+    TOGGLE_WEEKENDS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -11,7 +13,9 @@ const initialState = {
     dateRange: [],
     channels: [],
     tests: [],
+    totalChannels: null,
     utilization: {},
+    displayWeekends: true,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -34,10 +38,22 @@ const rootReducer = (state = initialState, action) => {
                 tests: action.payload
             };
         }
+        case SET_TOTAL_CHANNELS: {
+            return {
+                ...state,
+                totalChannels: action.payload
+            };
+        }
         case CALC_UTILIZATION: {
             return {
                 ...state,
                 utilization: action.payload
+            };
+        }
+        case TOGGLE_WEEKENDS: {
+            return {
+                ...state,
+                displayWeekends: action.payload
             };
         }
         default:

@@ -4,7 +4,9 @@ import {
     SET_DATE_RANGE,
     FETCH_CHANNELS_DATA,
     FETCH_TESTS_DATA,
+    SET_TOTAL_CHANNELS,
     CALC_UTILIZATION,
+    TOGGLE_WEEKENDS,
 } from './actionTypes';
 
 const calcDateRange = (start, end) => {
@@ -40,6 +42,13 @@ export const fetchTestsData = () => {
     };
 };
 
+export const setTotalChannels = () => {
+    return (dispatch, getState) => {
+        const { channels } = getState();
+        const total = channels.length;
+        return dispatch({ type: SET_TOTAL_CHANNELS, payload: total });
+    };
+};
 
 export const calcUtilization = () => {
     return (dispatch, getState) => {
@@ -85,5 +94,12 @@ export const calcUtilization = () => {
             }
         }
         return dispatch({ type: CALC_UTILIZATION, payload: channelsPerDay });
+    };
+};
+
+export const toggleWeekends = () => {
+    return (dispatch, getState) => {
+        const { displayWeekends } = getState();
+        return dispatch({ type: TOGGLE_WEEKENDS, payload: !displayWeekends });
     };
 };
