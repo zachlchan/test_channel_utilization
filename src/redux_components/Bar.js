@@ -24,68 +24,42 @@ const Bar = ({ date, utilization }) => {
         return false;
     };
 
+    const barElement = (
+        <StyledWrapper barHeight={barHeight}>
+            <div className="bar">
+                <Tooltip {...tooltipDetails} />
+            </div>
+        </StyledWrapper>
+    );
+
     if (displayWeekends) {
-        return (
-            <StyledBar>
-                <div className="bar" style={{ height: barHeight }}>
-                    <Tooltip {...tooltipDetails} />
-                </div>
-            </StyledBar>
-        );
+        return barElement;
     }
     // filter weekend test dates from data set
     if (!displayWeekends && !isWeekend()) {
-        return (
-            <StyledBar>
-                <div className="bar" style={{ height: barHeight }}>
-                    <Tooltip {...tooltipDetails} />
-                </div>
-            </StyledBar>
-        );
+        return barElement;
     }
     return null;
 };
 
-const StyledBar = styled.div`
+const StyledWrapper = styled.div`
     position: relative;
     display: inline-block;
     background-color: #6fb3ff;
     width: 20px;
     margin: 2px;
     :hover {
-      background-color: #006ce5;
-      transition: background-color 0.3s;
-      .tooltipText {
-        visibility: visible;
-        transition: visibility 0.3s;
-      }
+        background-color: #006ce5;
+        transition: background-color 0.3s;
+        .tooltip {
+            visibility: visible;
+            transition: visibility 0.3s;
+        }
     }
     .bar {
-      display: flex;
-    }
-    .tooltip, .tooltipText {
-      visibility: hidden;
-      width: 150px;
-      background-color: white;
-      border: 1px solid #555;
-      color: black;
-      text-align: center;
-      margin-left: 10px; // half of bar width
-      padding: 5px 0;
-      border-radius: 6px;
-      position: absolute;
-      top: 100%;
-      left: -50%;
-      z-index: 1;
-    }
-    .tooltip .tooltipText::after {
-      content: " ";
-      position: absolute;
-      bottom: 100%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: transparent transparent black transparent;
+        height: ${props => props.barHeight};
+        display: flex;
+        justify-content: center;
     }
 `;
 
