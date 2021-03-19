@@ -1,17 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import 'babel-polyfill';
-import moment from 'moment';
 import { toggleWeekends } from '../actions/index';
 import Bar from './Bar';
+import XAxisLabel from './XAxisLabel';
 
 const BarChart = () => {
     const dispatch = useDispatch();
     const utilization = useSelector(state => state.utilization);
     const dateRange = useSelector(state => state.dateRange);
-    const startDate = useSelector(state => state.startDate);
-    const endDate = useSelector(state => state.endDate);
 
     const getBars = () => {
         return (
@@ -28,10 +25,7 @@ const BarChart = () => {
             </div>
             <h2>channel utilization</h2>
             <div className="barChart">{getBars()}
-                <div className="xlabels">
-                    <div className="xstart">{moment(startDate).format('MMM D')}</div>
-                    <div className="xend">{moment(endDate).format('MMM D')}</div>
-                </div>
+                <XAxisLabel />
             </div>
         </StyledWrapper>
     );
@@ -70,13 +64,6 @@ const StyledWrapper = styled.div`
     .barChart {
         width: fit-content;
         margin-left: 25%;
-    }
-    .xlabels {
-        font-size: 0.875rem;
-        font-weight: 600;
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
     }
 `;
 

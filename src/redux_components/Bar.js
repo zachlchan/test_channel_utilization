@@ -11,6 +11,7 @@ const Bar = ({ date, utilization }) => {
     const numChannels = utilization || 0;
     const utilizationRatio = numChannels / totalChannels;
     const barHeight = numChannels ? `${utilizationRatio * 200}px` : 0;
+
     const tooltipDetails = {
         date: `${date}`,
         ratio: `${numChannels} of ${totalChannels} channels`,
