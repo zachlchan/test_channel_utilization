@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import 'babel-polyfill';
 import moment from 'moment';
+import { toggleWeekends } from '../actions/index';
 import Bar from './Bar';
 
-const BarChart = ({
-    totalChannels,
-    utilization,
-    chartRange,
-    startDate,
-    endDate
-}) => {
-    const [displayWeekends, setDisplayWeekends] = useState(true);
-
-    const toggleWeekends = () => setDisplayWeekends(!displayWeekends);
+const BarChart = () => {
+    const dispatch = useDispatch();
+    const totalChannels = useSelector(state => state.totalChannels);
+    const utilization = useSelector(state => state.utilization);
+    const dateRange = useSelector(state => state.dateRange);
+    const startDate = useSelector(state => state.startDate);
+    const endDate = useSelector(state => state.endDate);
+    const displayWeekends = useSelector(state => state.displayWeekends);
 
     const getBars = () => {
-        if (chartRange && utilization) {
+        if (dateRange && utilization) {
             const childProps = {
                 totalChannels,
                 // utilization,
                 displayWeekends,
             };
             return (
-                chartRange.map(date => <Bar key={date} date={date} {...childProps} utilization={utilization[date]} />)
+                dateRange.map(date => <Bar key={date} date={date} {...childProps} utilization={utilization[date]} />)
             );
         }
     };
@@ -31,7 +31,7 @@ const BarChart = ({
     return (
         <StyledWrapper>
             <div className="toggleContainer">
-                <button className="wkndBtn" type="button" onClick={toggleWeekends}>
+                <button className="wkndBtn" type="button" onClick={() => dispatch(toggleWeekends())}>
                     toggle weekends
                 </button>
             </div>

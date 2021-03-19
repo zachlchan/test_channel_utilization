@@ -8,41 +8,28 @@ import {
     setDateRange,
     fetchChannelsData,
     fetchTestsData,
+    setTotalChannels,
     calcUtilization
 } from '../actions/index';
 import BarChart from './BarChart';
 
 const App = () => {
     const dispatch = useDispatch();
-    const startDate = useSelector(state => state.startDate);
-    const endDate = useSelector(state => state.endDate);
-    const chartRange = useSelector(state => state.dateRange);
-    const channelsData = useSelector(state => state.channels);
-    const utilization = useSelector(state => state.utilization);
 
     useEffect(() => {
         (async () => {
             dispatch(setDateRange());
             await dispatch(fetchChannelsData());
             await dispatch(fetchTestsData());
+            dispatch(setTotalChannels());
             dispatch(calcUtilization());
         })();
     }, [dispatch]);
 
-    const totalChannels = channelsData.length;
-
-    const childProps = {
-        totalChannels,
-        utilization,
-        chartRange,
-        startDate,
-        endDate,
-    };
-
     return (
         <StyledWrapper>
             <h1>Productivity Dashboard</h1>
-            <BarChart {...childProps} />
+            <BarChart />
         </StyledWrapper>
     );
 };
