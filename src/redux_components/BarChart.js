@@ -19,7 +19,8 @@ const BarChart = () => {
         <StyledWrapper>
             <ToggleWeekendsBTN />
             <h2>channel utilization</h2>
-            <div className="barChart">{getBars()}
+            <div className="barChart">
+                {getBars()}
                 <XAxisLabel />
             </div>
         </StyledWrapper>

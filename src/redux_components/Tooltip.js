@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Tooltip = ({
-    date,
-    ratio,
-    percentage
-}) => {
+const Tooltip = ({ date, ratio, percentage }) => {
     return (
         <StyledWrapper className="tooltip">
             <h3 className="detailTitle">{date}</h3>

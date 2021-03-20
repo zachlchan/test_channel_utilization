@@ -5,7 +5,6 @@ import { toggleWeekends } from '../actions/index';
 
 const ToggleWeekendsBTN = () => {
     const dispatch = useDispatch();
-
     const toggle = () => dispatch(toggleWeekends());
 
     return (
