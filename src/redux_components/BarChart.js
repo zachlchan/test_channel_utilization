@@ -5,22 +5,23 @@ import ToggleWeekendsBTN from './ToggleWeekendsBTN';
 import Bar from './Bar';
 import XAxisLabel from './XAxisLabel';
 
+/**
+ * Component that displays the channel utilization bar chart
+ */
 const BarChart = () => {
     const utilization = useSelector(state => state.utilization);
     const dateRange = useSelector(state => state.dateRange);
 
-    const getBars = () => {
-        return (
-            dateRange.map(date => <Bar key={date} date={date} utilization={utilization[date]} />)
-        );
-    };
+    const getBars = dateRange.map(
+        date => <Bar key={date} date={date} utilization={utilization[date]} />
+    );
 
     return (
         <StyledWrapper>
             <ToggleWeekendsBTN />
             <h2>channel utilization</h2>
-            <div className="barChart">
-                {getBars()}
+            <div data-testid="barChart" className="barChart">
+                {getBars}
                 <XAxisLabel />
             </div>
         </StyledWrapper>

@@ -109,9 +109,7 @@ describe('BarChart', () => {
         expect(bars.length).toBe(4);
 
         // trigger click on button to toggle display of weekend data
-        act(() => {
-            button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        });
+        ReactTestUtils.Simulate.click(button);
         const noWkndBars = container.querySelectorAll('div.bar');
         expect(noWkndBars.length).toBe(2);
     });

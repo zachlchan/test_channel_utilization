@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * Component that displays a tooltip when the user hovers over a bar element
+ */
 const Tooltip = ({ date, ratio, percentage }) => {
     return (
-        <StyledWrapper className="tooltip">
+        <StyledWrapper data-testid="tooltip" className="tooltip">
             <h3 className="detailTitle">{date}</h3>
             <ul className="detailList">
                 <li className="detailText">{ratio}</li>

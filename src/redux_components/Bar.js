@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Tooltip from './Tooltip';
 
+/**
+ * Component that displays individual bar elements of the bar chart
+ *      with element height representing the utilization ratio
+ */
 const Bar = ({ date, utilization }) => {
     const totalChannels = useSelector(state => state.totalChannels);
     const displayWeekends = useSelector(state => state.displayWeekends);
@@ -25,7 +29,7 @@ const Bar = ({ date, utilization }) => {
     };
 
     const barElement = (
-        <StyledWrapper barHeight={barHeight}>
+        <StyledWrapper data-testid="bar" barHeight={barHeight}>
             <div className="bar">
                 <Tooltip {...tooltipDetails} />
             </div>

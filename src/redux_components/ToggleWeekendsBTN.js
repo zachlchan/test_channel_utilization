@@ -3,13 +3,19 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { toggleWeekends } from '../actions/index';
 
+/**
+ * UI component for toggling whether or not weekend datapoints are displayed
+ */
 const ToggleWeekendsBTN = () => {
     const dispatch = useDispatch();
+    /**
+     * dispatches an action that triggers an update to the displayWeekends state property
+     */
     const toggle = () => dispatch(toggleWeekends());
 
     return (
         <StyledWrapper>
-            <button className="wkndBtn" type="button" onClick={toggle}>
+            <button data-testid="wkndBtn" className="wkndBtn" type="button" onClick={toggle}>
                 toggle weekends
             </button>
         </StyledWrapper>

@@ -13,6 +13,9 @@ import {
 } from '../actions/index';
 import BarChart from './BarChart';
 
+/**
+ * Component for displaying a bar chart
+ */
 const App = () => {
     const dispatch = useDispatch();
 
